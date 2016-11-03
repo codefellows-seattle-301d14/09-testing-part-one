@@ -20,13 +20,26 @@ var assert = require('./vendor/assert');
 
 //  Below, we will write an example of our test in action:
 
-var ricksFaveAnimal;
+var ricksFaveAnimal = 'Bee';
 
 function testRicksFaveAnimal() {
-  assert ();
+  assert (
+    typeof ricksFaveAnimal === 'string',
+    'SUCCESS: ricksFaveAnimal is valid type',
+    'FAIL: ricksFaveAnimal is invalid type: ' + typeof ricksFaveAnimal
+  );
+}
+
+function testIsValidString() {
+  assert(
+    ricksFaveAnimal.trim(),
+    'SUCCESS: ricksFaveAnimal is valid string',
+    'FAIL: ricksFaveAnimal is invalid'
+  );
 }
 
 testRicksFaveAnimal();
+testIsValidString();
 
 
 /* ========================================================================
@@ -37,7 +50,7 @@ animals. You only have time for one. How do you choose just one?!
 */
 
 var favoriteAnimals = ['elephants', 'penguins', 'eagles', 'camels'];
-var nextAnimal;
+var nextAnimal = 'bees';
 
 /* NOTE:
 Write a test FIRST! Use the 'assert()' function below to ensure
@@ -52,13 +65,25 @@ message. */
 function testWhichAnimal() {
   // TODO: Complete this assert function.
   // Don't forget your three arguments!
-  assert();
+  assert(
+    favoriteAnimals.indexOf(nextAnimal) !== -1,
+    'nextAnimal: ' + nextAnimal + ' is/are a favorite animal',
+    'nextAnimal: ' + nextAnimal + ' is/are not a favorite animal'
+  );
 };
 
 testWhichAnimal();
+
 /* TODO:
 Now assign one of your favorite animals dynamically, by chance, to the
 nextAnimal variable ... then invoke your test!
 When ready, execute this program in your terminal with node
 (node bonus-testing-part-one)  :-)
 Your code begins on the next line: */
+
+function assignNextAnimal() {
+  nextAnimal = favoriteAnimals[Math.floor(Math.random() * favoriteAnimals.length)];
+}
+
+assignNextAnimal();
+testWhichAnimal();
