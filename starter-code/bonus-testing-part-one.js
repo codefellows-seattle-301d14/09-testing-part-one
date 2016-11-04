@@ -20,13 +20,26 @@ var assert = require('./vendor/assert');
 
 //  Below, we will write an example of our test in action:
 
-var ricksFaveAnimal;
+var ricksFaveAnimal = 'bears';
 
 function testRicksFaveAnimal() {
-  assert ();
+  assert (
+    // typeof is an unary operator therefore it doesn't need to be camel cased (i.e. it's not a method)
+    typeof ricksFaveAnimal === 'string',
+    'ricksFaveAnimal is a string',
+    'ricksFaveAnimal is not a string, it is a ' + typeof ricksFaveAnimal + '.'
+  );
 }
 
+function testIsValidString() {
+  assert (
+    ricksFaveAnimal.trim() !== '',
+    'ricksFaveAnimal is a string with content',
+    'ricksFaveAnimal is an empty string'
+  );
+}
 testRicksFaveAnimal();
+testIsValidString();
 
 
 /* ========================================================================
@@ -37,7 +50,7 @@ animals. You only have time for one. How do you choose just one?!
 */
 
 var favoriteAnimals = ['elephants', 'penguins', 'eagles', 'camels'];
-var nextAnimal;
+var nextAnimal = randomFavoriteAnimal(favoriteAnimals.length);
 
 /* NOTE:
 Write a test FIRST! Use the 'assert()' function below to ensure
@@ -52,7 +65,11 @@ message. */
 function testWhichAnimal() {
   // TODO: Complete this assert function.
   // Don't forget your three arguments!
-  assert();
+  assert(
+    favoriteAnimals.indexOf(nextAnimal) !== -1,
+    'Success. The next animal is ' + nextAnimal,
+    'Fail.'
+  );
 };
 
 testWhichAnimal();
@@ -62,3 +79,7 @@ nextAnimal variable ... then invoke your test!
 When ready, execute this program in your terminal with node
 (node bonus-testing-part-one)  :-)
 Your code begins on the next line: */
+function randomFavoriteAnimal(max) {
+  var i = Math.floor(Math.random() * (max - 0)) + 0;
+  return favoriteAnimals[i];
+};
