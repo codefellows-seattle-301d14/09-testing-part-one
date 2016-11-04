@@ -20,13 +20,26 @@ var assert = require('./vendor/assert');
 
 //  Below, we will write an example of our test in action:
 
-var ricksFaveAnimal;
+var ricksFaveAnimal = 'slim';
 
 function testRicksFaveAnimal() {
-  assert ();
+  assert (
+    typeof ricksFaveAnimal === 'string',
+    'Yay! ricksFaveAnimal is a string',
+    'ricksFaveAnimal is not a string It Is:' + ricksFaveAnimal + '.'
+  );
+}
+
+function testIsValidString() {
+  assert(
+    ricksFaveAnimal.trim().length,
+    'ricksFaveAnimal is a string with content',
+    'ricksFaveAnimal favorite animal is an empty string'
+  );
 }
 
 testRicksFaveAnimal();
+testIsValidString();
 
 
 /* ========================================================================
@@ -37,7 +50,7 @@ animals. You only have time for one. How do you choose just one?!
 */
 
 var favoriteAnimals = ['elephants', 'penguins', 'eagles', 'camels'];
-var nextAnimal;
+var nextAnimal = favoriteAnimals[Math.floor(Math.random() * favoriteAnimals.length)];
 
 /* NOTE:
 Write a test FIRST! Use the 'assert()' function below to ensure
@@ -52,7 +65,11 @@ message. */
 function testWhichAnimal() {
   // TODO: Complete this assert function.
   // Don't forget your three arguments!
-  assert();
+  assert(
+    favoriteAnimals.indexOf(nextAnimal) === -1 ? false : true,
+    'Yes, ' + nextAnimal + ' is in the favoriteAnimals Array',
+    'No' + nextAnimal + ' is in the favoriteAnimals Array'
+  );
 };
 
 testWhichAnimal();
