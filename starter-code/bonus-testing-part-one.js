@@ -20,13 +20,26 @@ var assert = require('./vendor/assert');
 
 //  Below, we will write an example of our test in action:
 
-var ricksFaveAnimal;
+var ricksFaveAnimal = 'penguins';
 
 function testRicksFaveAnimal() {
-  assert ();
+  assert (
+    typeof ricksFaveAnimal === 'string',
+    'Yay! ricksFaveAnimal is a string',
+    'ricksFaveAnimal should be a string, but is currently ' + ricksFaveAnimal + '.'
+  );
+}
+
+function testIsValidString() {
+  assert(
+    ricksFaveAnimal.trim().length,
+    'ricksFaveAnimal is a string with content.',
+    'ricksFaveAnimal is an empty string!'
+  );
 }
 
 testRicksFaveAnimal();
+testIsValidString();
 
 
 /* ========================================================================
@@ -49,16 +62,25 @@ just 'penguin').
 Remember to: pass in your expression, and write a success and a failure
 message. */
 
+
 function testWhichAnimal() {
   // TODO: Complete this assert function.
   // Don't forget your three arguments!
-  assert();
+  assert(
+    typeof(nextAnimal) === 'string' && favoriteAnimals.indexOf(nextAnimal) !== -1,
+    ' " ' + nextAnimal + '" is a string!',
+    ' " ' + nextAnimal + '"is not a string!'
+  );
 };
 
-testWhichAnimal();
 /* TODO:
 Now assign one of your favorite animals dynamically, by chance, to the
 nextAnimal variable ... then invoke your test!
 When ready, execute this program in your terminal with node
 (node bonus-testing-part-one)  :-)
 Your code begins on the next line: */
+nextAnimal = function() {
+  nextAnimal = favoriteAnimals[Math.round(Math.random() * favoriteAnimals.length)];
+};
+nextAnimal();
+testWhichAnimal();
