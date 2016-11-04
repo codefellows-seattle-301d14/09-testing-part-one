@@ -50,7 +50,7 @@ animals. You only have time for one. How do you choose just one?!
 */
 
 var favoriteAnimals = ['elephants', 'penguins', 'eagles', 'camels'];
-var nextAnimal = 'eagles';
+var nextAnimal = favoriteAnimals[Math.floor(Math.random() * favoriteAnimals.length)];
 
 /* NOTE:
 Write a test FIRST! Use the 'assert()' function below to ensure
