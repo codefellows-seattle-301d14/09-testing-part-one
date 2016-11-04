@@ -20,14 +20,28 @@ var assert = require('./vendor/assert');
 
 //  Below, we will write an example of our test in action:
 
-var ricksFaveAnimal;
+var ricksFaveAnimal = 'gg  ';
 
 function testRicksFaveAnimal() {
-  assert ();
+  assert (
+typeof ricksFaveAnimal ==='string',
+'yay! you did it! RFA is a string',
+'RFA is not a string but it is a '+typeof ricksFaveAnimal
+  );
 }
 
 testRicksFaveAnimal();
 
+function testIsValidString(){
+  assert (
+    ricksFaveAnimal.trim().length,
+    'RFA is a valid string with content',
+    'RFA is an empty string'
+  );
+
+}
+
+testIsValidString();
 
 /* ========================================================================
 ------------------------- Favorite Animals --------------------------------
@@ -37,7 +51,7 @@ animals. You only have time for one. How do you choose just one?!
 */
 
 var favoriteAnimals = ['elephants', 'penguins', 'eagles', 'camels'];
-var nextAnimal;
+var nextAnimal = '';
 
 /* NOTE:
 Write a test FIRST! Use the 'assert()' function below to ensure
@@ -52,7 +66,13 @@ message. */
 function testWhichAnimal() {
   // TODO: Complete this assert function.
   // Don't forget your three arguments!
-  assert();
+  assert(
+favoriteAnimals.filter(function(animal){
+  return nextAnimal === animal;
+})
+.length, 'YaY! your next animal is a favorite, ' + nextAnimal,
+        'boo next animal is not a favorite its a '+ nextAnimal
+  );
 };
 
 testWhichAnimal();
@@ -62,3 +82,7 @@ nextAnimal variable ... then invoke your test!
 When ready, execute this program in your terminal with node
 (node bonus-testing-part-one)  :-)
 Your code begins on the next line: */
+var random4 = Math.floor(Math.random()*4);
+
+nextAnimal = favoriteAnimals[random4];
+testWhichAnimal();
