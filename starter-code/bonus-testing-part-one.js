@@ -20,13 +20,26 @@ var assert = require('./vendor/assert');
 
 //  Below, we will write an example of our test in action:
 
-var ricksFaveAnimal;
+var ricksFaveAnimal = 'elephant';
 
 function testRicksFaveAnimal() {
-  assert ();
+  assert (
+    typeof ricksFaveAnimal === 'string',
+    'ricksFaveAnimal is a string.',
+    'ricksFaveAnimal is not a string, but is currently ' + typeof ricksFaveAnimal + '.'
+  );
 }
 
+function testIsValidString() {
+  assert(
+    ricksFaveAnimal.trim().length,
+    'ricksFaveAnimal is a string with content.',
+    'ricksFaveAnimal is an empty string.'
+  );
+};
+
 testRicksFaveAnimal();
+testIsValidString();
 
 
 /* ========================================================================
@@ -37,6 +50,7 @@ animals. You only have time for one. How do you choose just one?!
 */
 
 var favoriteAnimals = ['elephants', 'penguins', 'eagles', 'camels'];
+var tedsFavoriteAnimals = ['dogs','cats','elephants','penguins'];
 var nextAnimal;
 
 /* NOTE:
@@ -52,13 +66,37 @@ message. */
 function testWhichAnimal() {
   // TODO: Complete this assert function.
   // Don't forget your three arguments!
-  assert();
+  assert(
+    favoriteAnimals.includes(nextAnimal),
+    'nextAnimal is an element of favoriteAnimals and is ' + nextAnimal + '.',
+    'nextAnimal is NOT an element of favoriteAnims'
+  );
 };
 
-testWhichAnimal();
+function testOverlap(){
+  assert(
+    function(){
+      favoriteAnimals.forEach(function(testAnimal){
+        return tedsFavoriteAnimals.indexOf(testAnimal);
+      });
+    },
+    'favorite Animals arrays overlap',
+    'favorite animals arrays DO NOT overlap'
+  );
+}
+
 /* TODO:
 Now assign one of your favorite animals dynamically, by chance, to the
 nextAnimal variable ... then invoke your test!
 When ready, execute this program in your terminal with node
 (node bonus-testing-part-one)  :-)
 Your code begins on the next line: */
+
+function assignNextAnimal(){
+  var whichAnimal = Math.floor(Math.random()*4);
+  nextAnimal = favoriteAnimals[whichAnimal];
+};
+
+assignNextAnimal();
+testWhichAnimal();
+testOverlap();
