@@ -20,14 +20,26 @@ var assert = require('./vendor/assert');
 
 //  Below, we will write an example of our test in action:
 
-var ricksFaveAnimal;
+var ricksFaveAnimal = '3';
 
 function testRicksFaveAnimal() {
-  assert ();
+  assert (
+    typeof ricksFaveAnimal === 'string',
+    'ricksFaveAnimal is a string!',
+    'ricksFaveAnimal is NOT a string! :('
+  );
+}
+
+function testIsValidString() {
+  assert(
+    ricksFaveAnimal.trim().length,
+    'ricksFaveAnimal is a string with content',
+    'ricksFaveAnimal has no content'
+  );
 }
 
 testRicksFaveAnimal();
-
+testIsValidString();
 
 /* ========================================================================
 ------------------------- Favorite Animals --------------------------------
@@ -52,9 +64,15 @@ message. */
 function testWhichAnimal() {
   // TODO: Complete this assert function.
   // Don't forget your three arguments!
-  assert();
+  assert(
+    favoriteAnimals.indexOf(nextAnimal) !== -1,
+    nextAnimal + ' is one of the favorite animals!',
+    nextAnimal + ' is NOT one of the favorite animals'
+  );
 };
 
+nextAnimal = favoriteAnimals[Math.floor(Math.random()*favoriteAnimals.length)];
+// nextAnimal = 'bear';
 testWhichAnimal();
 /* TODO:
 Now assign one of your favorite animals dynamically, by chance, to the
